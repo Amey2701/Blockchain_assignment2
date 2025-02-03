@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Blockchain</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: auto;
+        }
+        button {
+            background: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #005f73;
+        }
+        pre {
+            text-align: left;
+            background: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Blockchain</h1>
+    <div class="container">
+        <button onclick="mineBlock()">Mine Block</button>
+        <button onclick="getChain()">View Blockchain</button>
+        <button onclick="checkValid()">Check Validity</button>
+
+        <h3>Response:</h3>
+        <pre id="response">Click a button to see the result...</pre>
+    </div>
+
+    <script>
+        function mineBlock() {
+            fetch('/mine_block')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = JSON.stringify(data, null, 4);
+                });
+        }
+
+        function getChain() {
+            fetch('/get_chain')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = JSON.stringify(data, null, 4);
+                });
+        }
+
+        function checkValid() {
+            fetch('/valid')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = JSON.stringify(data, null, 4);
+                });
+        }
+    </script>
+</body>
+</html>
